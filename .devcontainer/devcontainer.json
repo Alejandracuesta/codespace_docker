@@ -1,14 +1,16 @@
 {
-    "name": "Docker Dev Container",
-    "build": {
-        "dockerfile": "Dockerfile"
-    },
-    "features": {
-        "docker-in-docker": "latest"
-    },
-    "mounts": [
-        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
-    ],
-    "postCreateCommand": "sudo chown vscode:docker /var/run/docker.sock || true",
-    "remoteUser": "vscode"
+  "name": "MySQL Codespace",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "docker-in-docker": "latest"
+  },
+  "postCreateCommand": "sudo usermod -aG docker vscode && sudo chown vscode:docker /var/run/docker.sock || true",
+  "remoteUser": "vscode",
+  "features": {
+	"docker-in-docker": "latest"
+	},
+  "forwardPorts": [3306],
+  "mounts": ["source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"]
 }
